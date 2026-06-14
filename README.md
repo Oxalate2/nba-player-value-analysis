@@ -23,22 +23,30 @@ The full analysis notebook can be found here.
 ## The League Landscape (2021-2026)
 The NBA has undergone measurable structural shifts across just six seasons. The league's average three-point attempt rate climbed from **40.3% in 2021** to **42.1% in 2026**, a steady upward trend reflecting an offensive philosophy that has fully committed to the analytics-driven shot hierarchy. The pace of change accelerated noticeably in the final two seasons, suggesting the three-point revolution has not plateaued.
 
+<p align="center">
+  <img width="800" alt="image" src="images/3pt-revolution.png">
+</p>
 
 This shift in shot selection did not happen in isolation. Average scoring per player rose from **11.6 PPG in 2021** to **11.7 PPG in 2026**, peaking at **11.8 PPG in 2025**, suggesting the move toward higher-value shots has contributed to real scoring inflation rather than simply redistributing the same points differently.
 
+<p align="center">
+  <img width="800" alt="image" src="images/scoring-inflation.png">
+</p>
 
 League-wide true shooting percentage improved alongside scoring, rising from **57.2% in 2021** to **57.9% in 2026**. The 2022 season stands out as the lone efficiency dip at **56.6% TS%** before the league rebounded. Average usage rate shifted modestly from **19.3% to 19.5%** over the same window, indicating that scoring gains came from better shot quality rather than concentrated offensive responsibility.
 
-
+<p align="center">
+  <img width="800" alt="image" src="images/offensiveLoad-vs-shootingEfficiency.png">
+</p>
 
 At the positional level, point guards carry the highest median usage rate and the tightest spread, reflecting their role as primary ball handlers and offensive initiators. The outlier dots above each position's whiskers represent star-level exceptions whose usage rates would be extraordinary at any position.
 
-
+<p align="center">
+  <img width="800" alt="image" src="images/usage-by-position.png">
+</p>
 
 ## Defining the Modern NBA Player
-Using KMeans clustering on eight advanced metrics covering usage, efficiency, shot selection, playmaking, rebounding, and two-way impact, **2,068 player-seasons** were grouped into six archetypes. The optimal cluster count of six was selected via elbow analysis, where inertia showed a clear inflection point before flattening through higher values.
-
-
+Traditional position labels such as point guard, shooting guard, and small forward usually tell you where a player stands and their role on the court. As the league has evolved, players have developed more versatile skill sets that transcend these conventional categories. To better capture these evolving roles, KMeans clustering was applied to **2,068 player-seasons** across 8 advanced metrics covering usage, efficiency, shot selection, playmaking, rebounding, and two-way impact. Six archetypes emerged, each capturing a distinct and recurring player profile across the modern NBA.
 
 **Offensive Engines** (346 player-seasons) are players around whom entire offenses are built, averaging a **27.4% usage rate**, **27.7% assist rate**, and **+3.0 BPM**, the only archetype with a meaningfully positive average impact score. Nikola Jokic, Luka Doncic, Giannis Antetokounmpo, and Shai Gilgeous-Alexander all land here.
 
@@ -52,19 +60,21 @@ Using KMeans clustering on eight advanced metrics covering usage, efficiency, sh
 
 **Volume Scorers** (425 player-seasons) carry the lowest average **TS% at 52%** and a **-3.3 BPM**, demonstrating the gap between scoring volume and actual impact.
 
+<p align="center">
+  <img width="1000" alt="image" src="images/avg-stats-by-archetype.png">
+</p>
 
+The BPM distribution confirms the hierarchy embedded in these labels. **Offensive Engines** are the only archetype with a median in All-Star caliber territory at **+3.0 BPM,** while **Volume Scorers** sit at **-3.3 BPM,** squarely in replacement-level range and the only group with a median that deep in negative territory. **Rim Anchors** land near the solid starter threshold at **+0.68 BPM,** while **Versatile Bigs, Floor Spacers,** and **Defensive Connectors** cluster in the average to slightly-below-average range, reflecting the reality that most NBA roster spots are filled by players who contribute situationally rather than transformatively.
 
-The BPM distribution confirms the hierarchy embedded in these labels. Offensive Engines are the only group with a median comfortably above zero at +3.0 BPM, while Volume Scorers sit at -3.3 BPM, the only archetype with a median firmly in negative territory. The remaining four archetypes cluster near replacement level, reflecting the reality that most NBA roster spots are filled by players who contribute situationally rather than transformatively.
+<p align="center">
+  <img width="800" alt="image" src="images/impact-by-archetype.png">
+</p>
 
+The 3PAr versus BPM scatter places every player on two immediately readable axes, perimeter orientation and overall impact. Within each archetype, the highest-impact seasons rise to the top: **Jokic** anchors the interior elite, **Curry** and **Lillard** lead the perimeter, **Wembanyama** and **Anthony Davis** headline the **Rim Anchors**, **Derrick White** and **Mikal Bridges** represent the Floor Spacers, and **Alex Caruso** sits at the top of the Defensive Connectors. The lower half of the chart reflects the volume-without-value players that populate most rosters regardless of perimeter orientation.
 
-
-The PCA visualization reduces the eight clustering features to two principal components, capturing **59.2% of total variance**. PC1 separates players along an interior-to-perimeter axis while PC2 separates them along an offensive impact axis. Rim Anchors pull hard to the right reflecting their rebounding and shot-blocking profile, while Offensive Engines sit elevated regardless of their perimeter orientation. The overlap in the lower-left is expected — perimeter role players share enough statistical similarity that clean separation at the boundary is neither possible nor meaningful.
-
-
-
-The 3PAr versus BPM scatter provides a more immediately interpretable view of the same separation. The upper quadrants capture high-impact players on both sides of the perimeter divide, while the lower half reflects the volume-without-value players that populate most rosters. Steph Curry and Damian Lillard anchor the perimeter elite, while Jokic's position in the upper-left illustrates why he defies positional convention entirely.
-
-
+<p align="center">
+  <img width="800" alt="image" src="images/3PAr-impact-by-archetype.png">
+</p>
 
 ## Contract Value & Market Efficiency
 A Ridge regression model was trained on eight performance features (PER, TS%, WS/48, BPM, VORP, USG%, minutes played, and age) to predict each player's fair market salary as a percentage of the cap, restricted to players with at least 500 minutes. Across a held-out test set the model achieved an **R² of 0.574** and a **mean absolute error of 4.41% of the cap**, equivalent to roughly **$6.2M** at current cap levels. The **43% of variance** left unexplained reflects legitimate non-statistical salary drivers — injury history, market size, contract timing, and star power that no box score can fully encode.
@@ -117,11 +127,12 @@ The watchlist uses each player's two most recent seasons to surface the best del
 - **Build around archetypes, not positions.** Pairing Offensive Engines with Defensive Connectors and Floor Spacers at below-market rates is the most repeatable path to a contending roster in the modern NBA.
 - **Avoid overpaying for Volume Scorers.** With an average **BPM of -3.3** and **TS% of just 52%**, this archetype consistently underdelivers relative to its salary. High usage does not equal high value.
 - **Target Rim Anchors as undervalued assets.** They post the highest average TS% in the dataset at **65%** but remain underpriced relative to perimeter creators in the open market.
+- **Treat archetypes as a spectrum, not a fixed label.** Players can sit at the boundary of two archetypes or shift between them across seasons depending on role, usage, and system fit. A **Versatile Big** asked to shoot more threes may migrate toward **Floor Spacer** territory; a **Defensive Connector** given more offensive responsibility may trend toward **Volume Scorer**. Tracking archetype movement year over year can surface players whose roles are expanding before their contracts reflect it.
 
 ### Contract Strategy
-- **Act on the buy-low watchlist before free agency.** Players flagged by both the regression and breakout models represent a shrinking window — their next contracts will reflect their rising value. Cooper Flagg, Devin Carter, and Jaylen Wells are the priority targets.
+- **Act on the buy-low watchlist before free agency.** Players flagged by both the regression and breakout models represent a shrinking window — their next contracts will reflect their rising value. **Cooper Flagg**, **Devin Carter**, and **Jaylen Wells** are some of the top priority targets.
 - **Use predicted salary as a negotiation anchor.** The model's fair market estimates provide a data-backed baseline for contract offers, particularly for players on rookie deals whose actual salaries lag significantly behind their production.
 
 ### Model Usage
 - **Use the breakout watchlist as a scouting filter, not a final answer.** The classifier achieves **70%** recall on statistical features alone. Role changes, injury recoveries, and system fit drive the remaining **30%**. Pair model output with film and context to create more informed decisions.
-- **Filter by archetype to target specific roster needs.** The contract value model can be applied within any single archetype to surface the most underpaid players at a given position profile. You're able to candidates such as Floor Spacers or Defensive Connectors by predicted salary delta within that group, narrowing the market to players who both fit the roster and represent value and upside.
+- **Filter by archetype to target specific roster needs.** The contract value model can be applied within any single archetype to surface the most underpaid players at a given position profile. You're able to group candidates such as Floor Spacers or Defensive Connectors by predicted salary delta within that group, narrowing the market to players who both fit the roster and represent value and upside.
