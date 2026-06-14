@@ -2,16 +2,16 @@
 ## Client Background
 A Western Conference franchise's analytics department is preparing for the 2026 offseason and wants to move beyond traditional scouting by leveraging six seasons of performance data to identify undervalued players, understand roster composition, and flag breakout candidates before they price themselves out of the market. This analysis is structured around four questions front offices increasingly need data to answer: how has the league itself changed, what types of players actually exist, who is being paid fairly, and who has the potential to break out.
 
-**How Has the Modern NBA Changed?**
+**The League Landscape:**
 An examination of league-wide trends from 2021 to 2026 across scoring, shot selection, and efficiency, establishing the analytical context for evaluating individual players in later sections.
 
-**What Types of Players Actually Exist?**
+**Defining the Modern NBA Player:**
 An unsupervised clustering analysis grouping 2,068 player-seasons into six meaningful archetypes based on efficiency, usage, and skill profiles, moving beyond traditional position labels to capture what players actually do on the floor.
 
-**Which Players Are Being Paid Fairly?**
+**Contract Value & Market Efficiency:**
 A Ridge regression model predicting fair market salary as a percentage of the cap, then comparing predicted versus actual salary to surface undervalued and overvalued players across the league.
 
-**Who Is About to Break Out?**
+**Breakout Candidate Identification:**
 A Random Forest classification model identifying players likely to significantly improve their impact from one season to the next, helping the front office target players before their next contract reflects their true ceiling.
 
 The data cleaning notebook can be found here.
@@ -114,7 +114,7 @@ The watchlist uses each player's two most recent seasons to surface the best del
 
 ## Recommendations
 ### Roster Construction
-- **Build around archetypes, not positions.** Pairing Offensive Engines with Defensive Connectors and Floor Spacers at below-market rates is the most repeatable path to a contender roster in the modern NBA.
+- **Build around archetypes, not positions.** Pairing Offensive Engines with Defensive Connectors and Floor Spacers at below-market rates is the most repeatable path to a contending roster in the modern NBA.
 - **Avoid overpaying for Volume Scorers.** With an average **BPM of -3.3** and **TS% of just 52%**, this archetype consistently underdelivers relative to its salary. High usage does not equal high value.
 - **Target Rim Anchors as undervalued assets.** They post the highest average TS% in the dataset at **65%** but remain underpriced relative to perimeter creators in the open market.
 
@@ -123,4 +123,5 @@ The watchlist uses each player's two most recent seasons to surface the best del
 - **Use predicted salary as a negotiation anchor.** The model's fair market estimates provide a data-backed baseline for contract offers, particularly for players on rookie deals whose actual salaries lag significantly behind their production.
 
 ### Model Usage
-- **Use the breakout watchlist as a scouting filter, not a final answer.** The classifier achieves **70%** recall on statistical features alone. Role changes, injury recoveries, and system fit drive the remaining **30%**. Pair model output with film and context to create nire informed decisions.
+- **Use the breakout watchlist as a scouting filter, not a final answer.** The classifier achieves **70%** recall on statistical features alone. Role changes, injury recoveries, and system fit drive the remaining **30%**. Pair model output with film and context to create more informed decisions.
+- **Filter by archetype to target specific roster needs.** The contract value model can be applied within any single archetype to surface the most underpaid players at a given position profile. You're able to candidates such as Floor Spacers or Defensive Connectors by predicted salary delta within that group, narrowing the market to players who both fit the roster and represent value and upside.
