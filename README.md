@@ -14,11 +14,9 @@ A Ridge regression model predicting fair market salary as a percentage of the ca
 **Breakout Candidate Identification:**
 A Random Forest classification model identifying players likely to significantly improve their impact from one season to the next, helping the front office target players before their next contract reflects their true ceiling.
 
-The data cleaning notebook can be found [here] 
-(https://github.com/Oxalate2/nba-player-value-analysis/blob/main/data-cleaning.ipynb).
+The data cleaning notebook can be found [here](https://github.com/Oxalate2/nba-player-value-analysis/blob/main/data-cleaning.ipynb).
 
-The full analysis notebook can be found [here] 
-(https://github.com/Oxalate2/nba-player-value-analysis/blob/main/analysis.ipynb).
+The full analysis notebook can be found [here](https://github.com/Oxalate2/nba-player-value-analysis/blob/main/analysis.ipynb).
 
 
 # Key Insights
